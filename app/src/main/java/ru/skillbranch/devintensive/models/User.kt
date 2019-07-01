@@ -10,7 +10,7 @@ data class User (
     var avatar:String?,
     var rating:Int = 0,
     var respect:Int = 0,
-    val lastVisit: Date? = null,
+    val lastVisit: Date? = Date(),
     val isOnline:Boolean  = false
 ) {
 
@@ -25,10 +25,14 @@ constructor(id: String, firstName: String? , lastName: String?) : this (
 
     constructor(id: String) : this (id, firstName="John", lastName = "Doe")
 
+
     init {
-        println("its alive !\n"+
-        "${if (lastName==="Doe") "His name id $firstName $lastName" else "and his name is $firstName $lastName!!"}\n")
+        println("$firstName $lastName")
     }
+//    init {
+//        println("its alive !\n"+
+//        "${if (lastName==="Doe") "His name id $firstName $lastName" else "and his name is $firstName $lastName!!"}\n")
+//    }
 
 
     fun printMe() :Unit {

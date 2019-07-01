@@ -31,7 +31,7 @@ fun Date.format(pattern:String = "HH:mm:ss dd.MM.yy") :String {
 }
 
 fun Date?.humanizeDiff(date: Date = Date()): String {
-
+return "eshe ne sdelano humanize diff"
 }
 
 enum class TimeUnits{
