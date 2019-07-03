@@ -3,10 +3,12 @@ package ru.skillbranch.devintensive.utils
 object Utils {
     fun parseFullName (fullName:String?) : Pair<String?, String?> {
 
-        if ( fullName != null && fullName.isNotEmpty() ) {
+
+        if ( fullName != null && fullName.isNotBlank() ) {
             val parts: List<String>? = fullName.split(" ")
             val firstName = parts?.getOrNull(0)
             val lastName = parts?.getOrNull(1)
+            val  name = firstName to lastName
 
             return when {
                 firstName=="" -> Pair(null, lastName)
@@ -20,8 +22,10 @@ object Utils {
     fun transliteration(payload: String, divider:String = " "): String {
         var fslovo : String = ""
         var sslovo : String = ""
-//        var z1 : String = ""
-//        var z2 : String = ""
+        var z1 : String = ""
+        var z2 : String = ""
+        var ssslovo :String =""
+        var ffslovo :String =""
 
 
          if (payload != null && payload.isNotBlank()) {
@@ -112,16 +116,20 @@ object Utils {
                    .replace("]", "").replace(" ", "")
            }
 
-                fslovo = funcpreob(preob)
-//                 z1 = fslovo.first().toUpperCase().toString()
+                fslovo = funcpreob(preob).toLowerCase()
+                 z1 = fslovo.first().toUpperCase().toString()
+             val perv = fslovo.first().toString()
+             ffslovo = fslovo.replace(perv , "")
 
             val preob2 = lastName!!.toCharArray()
              translit.clear()
-                sslovo = funcpreob(preob2)
-//              z2 = sslovo.first().toUpperCase().toString()
+                sslovo = funcpreob(preob2).toLowerCase()
+             val perv2 = sslovo.first().toString()
+              z2 = sslovo.first().toUpperCase().toString()
+                 ssslovo = sslovo.replace(perv2 , "")
 
          }
-        return ("$fslovo$divider$sslovo")
+        return ("$z1$ffslovo$divider$z2$ssslovo")
 
     }
 
