@@ -58,6 +58,7 @@ const val DAY = 24 * HOUR
     // 2,3,4 минуты 22,23,24..... 1,21 минуту  все остальное минут
     // 2,3,4  часа  22,23,24..... 1,21 час    все остальное часов
     // 2,3,4, дня   22,23,24..... 1,21 день   все остальное дней
+
 if (difsec > 0 ) {
     when (difsec) {
         in 76..2700 -> znachmin = difsec / 60
@@ -163,25 +164,39 @@ enum class TimeUnits{
 
     fun plural (int: Int) : String{
         val unit = this
-        println(unit)
         val parse = int.toString().toCharArray().last()
-        println(parse)
-        var vremya : String = ""
         when (unit) {
             SECOND ->  {
-                println("ya tut")
-                val nen = parse.toString().toInt()
-                println(nen)
-                if (nen==2 || nen==3 || nen==4){
-                    vremya = "секунды"
+                when (val nen = parse.toString().toInt()) {
+                    2,3,4 -> return "$int секунды"
+                    1 ->     return "$int секунда"
+                    else ->  return "$int секунд"
                 }
             }
-            MINUTE ->  MINUTE
-            HOUR ->  HOUR
-            DAY ->  DAY
+            MINUTE ->  {
+                when (val nen = parse.toString().toInt()){
+                    2,3,4 -> return "$int минуты"
+                    1 ->     return "$int минута"
+                    else ->  return "$int минут"
+                }
+            }
+            HOUR ->  {
+                when (val nen = parse.toString().toInt()) {
+                    2,3,4 -> return "$int часа"
+                    1 ->     return "$int час"
+                    else ->  return "$int часов"
+                }
+            }
+            DAY ->  {
+                when (val nen = parse.toString().toInt()) {
+                    2,3,4 -> return "$int дня"
+                    1 ->     return "$int день"
+                    else ->  return "$int дней"
+                }
+            }
         }
 
-        return "$int $vremya"
+//        return "$int $vremya"
     }
 }
 //    fun TimeUnits.plural (int: Int) : String{
