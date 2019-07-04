@@ -30,20 +30,20 @@ const val DAY = 24 * HOUR
         return this
 }
 
-fun Date?.humanizeDiff(date: Date = Date()): String {
+    fun Date?.humanizeDiff(date: Date = Date()): String {
 
 //    val net  = this!!.time.toString()
 
-    fun qformat (pattern: String =  "HH:mm:ss dd.MM.yy") :String {
-        val sdf = SimpleDateFormat(pattern, Locale("ru"))
-        val exdate = sdf.format(Date())
-        println(exdate)
-        return exdate
-    }
+//    fun qformat (pattern: String =  "HH:mm:ss dd.MM.yy") :String {
+//        val sdf = SimpleDateFormat(pattern, Locale("ru"))
+//        val exdate = sdf.format(Date())
+//        println(exdate)
+//        return exdate
+//    }
 
 //    val rty = qformat()
 ////    println(rty)
-    val curdate = Date().time
+//    val curdate = Date().time
     val difsec = (date.time - this!!.time)/1000
 //    val curdate2 = Date().time
 
@@ -159,5 +159,48 @@ enum class TimeUnits{
     SECOND,
     MINUTE,
     HOUR,
-    DAY
+    DAY;
+
+    fun plural (int: Int) : String{
+        val unit = this
+        println(unit)
+        val parse = int.toString().toCharArray().last()
+        println(parse)
+        var vremya : String = ""
+        when (unit) {
+            SECOND ->  {
+                println("ya tut")
+                val nen = parse.toString().toInt()
+                println(nen)
+                if (nen==2 || nen==3 || nen==4){
+                    vremya = "секунды"
+                }
+            }
+            MINUTE ->  MINUTE
+            HOUR ->  HOUR
+            DAY ->  DAY
+        }
+
+        return "$int $vremya"
+    }
 }
+//    fun TimeUnits.plural (int: Int) : String{
+//        val unit = TimeUnits.
+//        val parse = int.toString().toCharArray().last()
+//        var vremya : String = ""
+//        when (unit) {
+//           TimeUnits.SECOND ->  {
+//               val nen = parse.toInt()
+//               if (nen==2 || nen==3 || nen==4){
+//                   vremya = "секунды"
+//               }
+//           }
+//           TimeUnits.MINUTE ->  MINUTE
+//           TimeUnits.HOUR ->  HOUR
+//           TimeUnits.DAY ->  DAY
+//        }
+//
+//    return "$int $vremya"
+//    }
+
+
