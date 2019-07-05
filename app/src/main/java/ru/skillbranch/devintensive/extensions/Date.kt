@@ -50,26 +50,27 @@ const val DAY = 24 * HOUR
     var znachmin: Long = 0
     var znachchas: Long = 0
     var znachdni: Long = 0
-    val minlist : List <Long> = arrayListOf(2,3,4,22,23,24,32,33,34,42,43,44)
+    val minlist : List <Int> = arrayListOf(2,3,4,22,23,24,32,33,34,42,43,44)
     val chaslist : List <Int> = arrayListOf(2,3,4,22)
     val range1 = 22..352 step 10
     val range2 = 23..353 step 10
     val range3 = 24..354 step 10
-    // 2,3,4 минуты 22,23,24..... 1,21 минуту  все остальное минут
-    // 2,3,4  часа  22,23,24..... 1,21 час    все остальное часов
-    // 2,3,4, дня   22,23,24..... 1,21 день   все остальное дней
+    val range4 = 21..351 step 10
+    // 2,3,4 минуты 22,23,24..... 1,21,31.. минуту  все остальное минут
+    // 2,3,4  часа  22,23,24..... 1,21,31.. час    все остальное часов
+    // 2,3,4, дня   22,23,24..... 1,21,31.. день   все остальное дней
 
-if (difsec > 0 ) {
+if (difsec >= 0 ) {
     when (difsec) {
         in 76..2700 -> znachmin = difsec / 60
         in 4501..79200 -> znachchas = difsec / 3600
         in 93601..31104000 -> znachdni = difsec / 86400
     }
 
-    when (znachmin) {
+    when (znachmin.toInt()) {
         in minlist -> return "$znachmin минуты назад"
-        21.toLong() -> return "$znachmin минуту назад"
-        1.toLong() -> return "$znachmin минуту назад"
+        1,21,31,41 -> return "$znachmin минуту назад"
+//        1 -> return "$znachmin минуту назад"
     }
 
     when (znachchas.toInt()) {
@@ -82,7 +83,8 @@ if (difsec > 0 ) {
         in range1 -> return "$znachdni дня назад"
         in range2 -> return "$znachdni дня назад"
         in range3 -> return "$znachdni дня назад"
-        1,21 -> return "$znachdni день назад"
+        in range4 -> return "$znachdni день назад"
+        1         -> return "$znachdni день назад"
     }
 
     return when (difsec) {
@@ -105,10 +107,9 @@ if (difsec > 0 ) {
         in 93601..31104000 -> znachdni = difsecp / 86400
     }
 
-    when (znachmin) {
-        in minlist -> return "через $znachmin минуты"
-        21.toLong() -> return "через $znachmin минуту"
-        1.toLong() -> return "через $znachmin минуту"
+    when (znachmin.toInt()) {
+        in minlist ->return "через $znachmin минуты"
+        1,21,31,41 -> return "через $znachmin минуту"
     }
 
     when (znachchas.toInt()) {
@@ -121,7 +122,8 @@ if (difsec > 0 ) {
         in range1 -> return "через $znachdni дня"
         in range2 -> return "через $znachdni дня"
         in range3 -> return "через $znachdni дня"
-        1,21 -> return "через $znachdni день"
+        in range4 -> return "через $znachdni день"
+        1         -> return "через $znachdni день"
     }
 
     return when (difsecp) {
@@ -165,30 +167,31 @@ enum class TimeUnits{
     fun plural (int: Int) : String{
         val unit = this
         val parse = int.toString().toCharArray().last()
+        val nen = parse.toString().toInt()
         when (unit) {
             SECOND ->  {
-                when (val nen = parse.toString().toInt()) {
+                when (nen) {
                     2,3,4 -> return "$int секунды"
                     1 ->     return "$int секунда"
                     else ->  return "$int секунд"
                 }
             }
             MINUTE ->  {
-                when (val nen = parse.toString().toInt()){
+                when (nen){
                     2,3,4 -> return "$int минуты"
                     1 ->     return "$int минута"
                     else ->  return "$int минут"
                 }
             }
             HOUR ->  {
-                when (val nen = parse.toString().toInt()) {
+                when (nen) {
                     2,3,4 -> return "$int часа"
                     1 ->     return "$int час"
                     else ->  return "$int часов"
                 }
             }
             DAY ->  {
-                when (val nen = parse.toString().toInt()) {
+                when (nen) {
                     2,3,4 -> return "$int дня"
                     1 ->     return "$int день"
                     else ->  return "$int дней"
