@@ -172,14 +172,14 @@ enum class TimeUnits{
             SECOND ->  {
                 when (nen) {
                     2,3,4 -> return "$int секунды"
-                    1 ->     return "$int секунда"
+                    1 ->     return "$int секунду"
                     else ->  return "$int секунд"
                 }
             }
             MINUTE ->  {
                 when (nen){
                     2,3,4 -> return "$int минуты"
-                    1 ->     return "$int минута"
+                    1 ->     return "$int минуту"
                     else ->  return "$int минут"
                 }
             }

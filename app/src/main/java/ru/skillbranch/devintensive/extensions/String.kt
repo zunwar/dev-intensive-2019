@@ -253,6 +253,12 @@ fun String.truncate(tnum : Int = 16) : String {
             .replace	(	"</var>"	,	""	)
             .replace	(	"</video>"	,	""	)
             .replace	(	"</wbr>"	,	""	)
+            .replace("&amp;", "")
+            .replace("&lt;", "")
+            .replace("&gt;", "")
+            .replace("&quot;" ,"")
+            .replace("&apos;", "")
+            .replace("&#39;", "")
             .replace("&", "")
             .replace("\"", "")
             .replace("\'", "")
@@ -268,4 +274,48 @@ fun String.truncate(tnum : Int = 16) : String {
             }
         }
     return mutlist.joinToString ("")
+}
+
+
+    fun String.stripHtml2 () :String {
+        val stroka : String = this
+//        val uco = Regex("<[^>]*>").replace(stroka, "")
+        val uco = this
+            .replace("&amp;", "")
+            .replace("&lt;", "")
+            .replace("&gt;", "")
+            .replace("&quot;" ,"")
+            .replace("&apos;", "")
+            .replace("&#39;", "")
+            .replace("&", "")
+            .replace("\"", "")
+            .replace("\'", "")
+//            .trimEnd()
+        println(uco)
+
+        if (uco=="") {
+            return ""
+        }
+        if (uco==" ") {
+            return uco
+        }
+
+
+
+
+        val achar  = uco.toCharArray()
+        val mutlist : MutableList<String> = arrayListOf()
+        achar.forEach { mutlist.add(it.toString()) }
+//        println(mutlist)
+        for (n in 0..mutlist.lastIndex) {
+            if (mutlist[n].isBlank() && mutlist[n+1].isBlank()) {
+                mutlist.set(n+1, "")
+            }
+        }
+        println(mutlist.joinToString (""))
+        if (mutlist.joinToString ("") == "") {
+            return " "
+        }
+//    return mutlist.joinToString ("")
+    return "sdf"
 }

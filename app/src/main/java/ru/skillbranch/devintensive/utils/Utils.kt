@@ -37,6 +37,7 @@ object Utils {
              val preob = firstName!!.toCharArray()
 
              val translit: MutableList<String> = mutableListOf()
+//             println(preob)
 
            fun funcpreob (preob : CharArray) :String {
              for (i in preob) {
@@ -134,7 +135,6 @@ object Utils {
                      "ch" -> translit.add("ch")
                      "sh" -> translit.add("sh")
                      "sh'"-> translit.add("sh'")
-                     ""   -> translit.add("")
                      "yu" -> translit.add("yu")
                      "ya" -> translit.add("ya")
                      "A"  -> translit.add("A")
@@ -170,20 +170,25 @@ object Utils {
                    .replace("]", "").replace(" ", "")
            }
 
-                fslovo = funcpreob(preob).toLowerCase()
-                 z1 = fslovo.first().toUpperCase().toString()
-             val perv = fslovo.first().toString()
-             ffslovo = fslovo.replace(perv , "")
+                fslovo = funcpreob(preob).toLowerCase().capitalize()
+//             println(fslovo.capitalize())
+//                 z1 = fslovo.first().toUpperCase().toString()
+//             println(z1)
+//             val perv = fslovo.first().toString()
+//             ffslovo = fslovo.replace(perv , "")
+//             println(ffslovo)
 
             val preob2 = lastName!!.toCharArray()
              translit.clear()
-                sslovo = funcpreob(preob2).toLowerCase()
-             val perv2 = sslovo.first().toString()
-              z2 = sslovo.first().toUpperCase().toString()
-                 ssslovo = sslovo.replace(perv2 , "")
+                sslovo = funcpreob(preob2).toLowerCase().capitalize()
+
+//             val perv2 = sslovo.first().toString()
+//              z2 = sslovo.first().toUpperCase().toString()
+//                 ssslovo = sslovo.replace(perv2 , "")
 
          }
-        return ("$z1$ffslovo$divider$z2$ssslovo")
+//        return ("$z1$ffslovo$divider$z2$ssslovo")
+        return ("$fslovo$divider$sslovo")
 
     }
 
