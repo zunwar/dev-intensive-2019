@@ -24,10 +24,8 @@ object Utils {
          if (payload != null && payload.isNotBlank()) {
              val parts: List<String>? = payload.split(" ")
              println(parts)
-
              val translit: MutableList<String> = mutableListOf()
 //             println(preob)
-
            fun funcpreob (preob : CharArray) :String {
              for (i in preob) {
                  val s = i.toString()
@@ -158,27 +156,13 @@ object Utils {
                return translit.toString().replace("[", "").replace(",", "")
                    .replace("]", "").replace(" ", "")
            }
-
                 val arstroka : MutableList<String> = arrayListOf()
              for (n in 0..parts!!.lastIndex) {
                  arstroka.add(funcpreob(parts[n].toCharArray()))
                  translit.clear()
-                 println(parts[n].toCharArray())
              }
-             println(arstroka)
-//             println(arstroka.joinToString (""))
-
-//             val te = "Super"
-//             val tes = te.toCharArray()
-//             val test = funcpreob(tes)
-//             println(test)
-
-
-
-             return ("${arstroka[0]}$divider${arstroka[1]} ${arstroka.getOrNull(2)}")
+             return (arstroka.joinToString(separator = divider))
          }
-////        return ("$z1$ffslovo$divider$z2$ssslovo")
-//        return ("${trans} $divider 123")
         return ""
 
     }
