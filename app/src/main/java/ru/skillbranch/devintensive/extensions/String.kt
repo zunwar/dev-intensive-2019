@@ -279,43 +279,59 @@ fun String.truncate(tnum : Int = 16) : String {
 
     fun String.stripHtml2 () :String {
         val stroka : String = this
-//        val uco = Regex("<[^>]*>").replace(stroka, "")
-        val uco = this
+        var uco = Regex("<[^>]*>").replace(stroka, "")
+//        var uco = this
             .replace("&amp;", "")
             .replace("&lt;", "")
             .replace("&gt;", "")
             .replace("&quot;" ,"")
             .replace("&apos;", "")
             .replace("&#39;", "")
-            .replace("&", "")
+//            .replace("&", "")
             .replace("\"", "")
             .replace("\'", "")
 //            .trimEnd()
-        println(uco)
 
-        if (uco=="") {
-            return ""
-        }
-        if (uco==" ") {
-            return uco
-        }
+//        println("123")
+//        println(uco)
+
+//        if (uco=="") {
+//            return ""
+//        }
+//        if (uco==" ") {
+//            return uco
+//        }
 
 
 
 
-        val achar  = uco.toCharArray()
-        val mutlist : MutableList<String> = arrayListOf()
-        achar.forEach { mutlist.add(it.toString()) }
+//        val achar  = uco.toCharArray()
+//        val mutlist : MutableList<String> = arrayListOf()
+//        achar.forEach { mutlist.add(it.toString()) }
 //        println(mutlist)
-        for (n in 0..mutlist.lastIndex) {
-            if (mutlist[n].isBlank() && mutlist[n+1].isBlank()) {
-                mutlist.set(n+1, "")
-            }
+//        for (n in 0..mutlist.lastIndex) {
+//            if (mutlist[n].isBlank() && mutlist[n+1].isBlank()) {
+////                mutlist.set(n+1, "")
+//                mutlist.removeAt(n+1)
+//                println("123")
+//                println(mutlist)
+//            }
+//        }
+////        println(mutlist.joinToString(""))
+////        if (mutlist.joinToString ("") == "") {
+////            return " "
+////        }
+////    return mutlist.joinToString ("")
+//
+
+        while (uco.contains("  ")) {
+            uco = uco.replace("  ", " ")
         }
-        println(mutlist.joinToString (""))
-        if (mutlist.joinToString ("") == "") {
-            return " "
-        }
-//    return mutlist.joinToString ("")
-    return "sdf"
+//        println("testing")
+//        println(uco)
+//        println("end")
+
+
+
+        return uco
 }
