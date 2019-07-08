@@ -20,28 +20,17 @@ object Utils {
     }
 
     fun transliteration(payload: String, divider:String = " "): String {
-        var fslovo : String = ""
-        var sslovo : String = ""
-        var z1 : String = ""
-        var z2 : String = ""
-        var ssslovo :String =""
-        var ffslovo :String =""
-
 
          if (payload != null && payload.isNotBlank()) {
              val parts: List<String>? = payload.split(" ")
-             val firstName = parts?.getOrNull(0)
-             val lastName = parts?.getOrNull(1)
-
-
-             val preob = firstName!!.toCharArray()
+             println(parts)
 
              val translit: MutableList<String> = mutableListOf()
 //             println(preob)
 
            fun funcpreob (preob : CharArray) :String {
              for (i in preob) {
-                 var s = i.toString()
+                 val s = i.toString()
 
                  when (s) {
                      "а" -> translit.add("a")
@@ -170,25 +159,27 @@ object Utils {
                    .replace("]", "").replace(" ", "")
            }
 
-                fslovo = funcpreob(preob).toLowerCase().capitalize()
-//             println(fslovo.capitalize())
-//                 z1 = fslovo.first().toUpperCase().toString()
-//             println(z1)
-//             val perv = fslovo.first().toString()
-//             ffslovo = fslovo.replace(perv , "")
-//             println(ffslovo)
+                val arstroka : MutableList<String> = arrayListOf()
+             for (n in 0..parts!!.lastIndex) {
+                 arstroka.add(funcpreob(parts[n].toCharArray()))
+                 translit.clear()
+                 println(parts[n].toCharArray())
+             }
+             println(arstroka)
+//             println(arstroka.joinToString (""))
 
-            val preob2 = lastName!!.toCharArray()
-             translit.clear()
-                sslovo = funcpreob(preob2).toLowerCase().capitalize()
+//             val te = "Super"
+//             val tes = te.toCharArray()
+//             val test = funcpreob(tes)
+//             println(test)
 
-//             val perv2 = sslovo.first().toString()
-//              z2 = sslovo.first().toUpperCase().toString()
-//                 ssslovo = sslovo.replace(perv2 , "")
 
+
+             return ("${arstroka[0]}$divider${arstroka[1]} ${arstroka.getOrNull(2)}")
          }
-//        return ("$z1$ffslovo$divider$z2$ssslovo")
-        return ("$fslovo$divider$sslovo")
+////        return ("$z1$ffslovo$divider$z2$ssslovo")
+//        return ("${trans} $divider 123")
+        return ""
 
     }
 
