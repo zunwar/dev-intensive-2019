@@ -10,15 +10,27 @@ class Bender (var status: Status = Status.NORMAL, var question : Question = Ques
         Question.SERIAL -> Question.SERIAL.question
         Question.IDLE -> Question.IDLE.question
     }
-
+    var ercnt = 0
     fun listenAnswer(answer: String): Pair<String, Triple<Int, Int, Int>> {
-        return if (question.answers.contains(answer)) {
-            question = question.nextQuestion()
-            "Отлично - это правильный ответ!\n${question.question}" to status.color
+
+        lateinit var otvet : Pair<String, Triple<Int, Int, Int>>
+        if (ercnt > 3) {
+            status = Status.NORMAL
+            question = Question.NAME
+            otvet = "Это неправильный ответ. Давай все по новой\n${question.question}" to status.color
+            ercnt = 0
         } else {
-            status = status.nextStatus()
-            "Это неправильный ответ!\n${question.question}" to status.color
+            if (question.answers.contains(answer)) {
+                question = question.nextQuestion()
+                otvet = "Отлично - ты справился\n${question.question}" to status.color
+            } else {
+                status = status.nextStatus()
+                otvet = "Это неправильный ответ\n${question.question}" to status.color
+                ercnt++
+            }
         }
+
+        return otvet
     }
 
     enum class Status(val color: Triple<Int, Int, Int>) {

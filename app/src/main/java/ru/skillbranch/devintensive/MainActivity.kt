@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() , View.OnClickListener {
     lateinit var messageEt : EditText
     lateinit var sendBtn : ImageView
     lateinit var benderObj : Bender
+//    lateinit var et : EditText
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,10 +31,12 @@ class MainActivity : AppCompatActivity() , View.OnClickListener {
         textTxt = tv_text
         messageEt = et_message
         sendBtn = iv_send
+//        et = et_test
 
         val status = savedInstanceState?.getString("STATUS") ?: Bender.Status.NORMAL.name
         val question = savedInstanceState?.getString("QUESTION") ?: Bender.Question.NAME.name
 //        val prevtext = savedInstanceState?.getString("text") ?: messageEt.toString()
+//        val prevtext = savedInstanceState?.getString("text") ?: et.text.toString()
         benderObj = Bender(Bender.Status.valueOf(status), Bender.Question.valueOf(question))
 
         Log.d("M_MainActivity", "OnCreate $status $question")
@@ -43,6 +46,7 @@ class MainActivity : AppCompatActivity() , View.OnClickListener {
 
         textTxt.text = (benderObj.askQuestion())
 //        messageEt.setText(prevtext)
+//        et.setText(prevtext)
 
         sendBtn.setOnClickListener(this)
     }
@@ -61,7 +65,7 @@ class MainActivity : AppCompatActivity() , View.OnClickListener {
         super.onSaveInstanceState(outState)
         outState?.putString("STATUS" , benderObj.status.name)
         outState?.putString("QUESTION" , benderObj.question.name)
-//        outState?.putString("text" , messageEt.toString())
+//        outState?.putString("text" , et.text.toString())
         Log.d("M_MainActivity" , "onSaveInstanceState ${benderObj.status.name}   ${benderObj.question.name}")
 
     }
