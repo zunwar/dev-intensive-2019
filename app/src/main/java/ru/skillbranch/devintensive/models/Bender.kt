@@ -10,7 +10,7 @@ class Bender (var status: Status = Status.NORMAL, var question : Question = Ques
         Question.SERIAL -> Question.SERIAL.question
         Question.IDLE -> Question.IDLE.question
     }
-    var ercnt = 0
+    var ercnt = 1
     fun listenAnswer(answer: String): Pair<String, Triple<Int, Int, Int>> {
 
         lateinit var otvet : Pair<String, Triple<Int, Int, Int>>

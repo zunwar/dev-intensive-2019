@@ -1,19 +1,26 @@
 package ru.skillbranch.devintensive
 
+import android.app.Activity
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.os.PersistableBundle
+//import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.TextView.OnEditorActionListener
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.skillbranch.devintensive.models.Bender
+import ru.skillbranch.devintensive.extensions.*
 
-class MainActivity : AppCompatActivity() , View.OnClickListener {
+class MainActivity : AppCompatActivity() , View.OnClickListener, OnEditorActionListener {
+
     lateinit var benderImage: ImageView
     lateinit var textTxt : TextView
     lateinit var messageEt : EditText
@@ -49,6 +56,25 @@ class MainActivity : AppCompatActivity() , View.OnClickListener {
 //        et.setText(prevtext)
 
         sendBtn.setOnClickListener(this)
+        messageEt.setOnEditorActionListener(this)
+        messageEt.setImeOptions(EditorInfo.IME_ACTION_DONE)
+    }
+
+
+    override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
+        if (actionId == EditorInfo.IME_ACTION_DONE) {
+            if (v?.id == R.id.et_message) {
+                val (phrase, color) = benderObj.listenAnswer(messageEt.text.toString().toLowerCase())
+                messageEt.setText("")
+                val (r, g, b) = color
+                benderImage.setColorFilter(Color.rgb(r, g, b), PorterDuff.Mode.MULTIPLY)
+                textTxt.text = phrase
+                this.hideKeyboard()
+
+            }
+
+        }
+        return false
     }
 
     override  fun onClick(v:View?) {
@@ -58,6 +84,7 @@ class MainActivity : AppCompatActivity() , View.OnClickListener {
             val (r,g,b) = color
             benderImage.setColorFilter(Color.rgb(r,g,b), PorterDuff.Mode.MULTIPLY)
             textTxt.text = phrase
+            this.hideKeyboard()
         }
     }
 
