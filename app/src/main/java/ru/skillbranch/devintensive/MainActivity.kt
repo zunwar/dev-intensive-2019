@@ -64,15 +64,14 @@ class MainActivity : AppCompatActivity() , View.OnClickListener, OnEditorActionL
     override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
         if (actionId == EditorInfo.IME_ACTION_DONE) {
             if (v?.id == R.id.et_message) {
-                val (phrase, color) = benderObj.listenAnswer(messageEt.text.toString().toLowerCase())
+                val (phrase, color) = benderObj.listenAnswer(messageEt.text.toString())
                 messageEt.setText("")
                 val (r, g, b) = color
                 benderImage.setColorFilter(Color.rgb(r, g, b), PorterDuff.Mode.MULTIPLY)
                 textTxt.text = phrase
                 this.hideKeyboard()
-
+                return true
             }
-
         }
         return false
     }
@@ -93,7 +92,7 @@ class MainActivity : AppCompatActivity() , View.OnClickListener, OnEditorActionL
         outState?.putString("STATUS" , benderObj.status.name)
         outState?.putString("QUESTION" , benderObj.question.name)
 //        outState?.putString("text" , et.text.toString())
-        Log.d("M_MainActivity" , "onSaveInstanceState ${benderObj.status.name}   ${benderObj.question.name}")
+        Log.d("M_MainActivity" , "onSaveInstanceState ${benderObj.status.name} ${benderObj.question.name}")
 
     }
 }
