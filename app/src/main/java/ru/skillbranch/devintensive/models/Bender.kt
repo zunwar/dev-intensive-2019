@@ -103,8 +103,33 @@ class Bender (var status: Status = Status.NORMAL, var question : Question = Ques
             Question.NAME -> {val a = ans.toCharArray().get(0); return a.isUpperCase()}
             Question.PROFESSION -> {val a = ans.toCharArray().get(0); return a.isLowerCase()}
 //            Question.MATERIAL -> {val a = ans.toCharArray().forEach { it.toInt() }}
-            Question.MATERIAL -> {val a = ans.toCharArray().forEach { if (it.toInt() == 1) {return false}}}
-            Question.BDAY -> {}
+            Question.MATERIAL -> {
+                val n = "123456780"
+                n.forEach {if (it in ans) {return false}}
+            }
+            Question.BDAY -> {
+                val n = "1234567890"
+                var sc = -1
+                for (i in 0..ans.lastIndex){
+                    for (r in 0..9)
+                         if (r.toString() in ans[i].toString()) {sc++}
+//                    when (ans[i]){
+//                        1.toChar() -> sc++
+//                        2.toChar() -> sc++
+//                        3.toChar() -> sc++
+//                        4.toChar() -> sc++
+//                        5.toChar() -> sc++
+//                        6.toChar() -> sc++
+//                        7.toChar() -> sc++
+//                        8.toChar() -> sc++
+//                        9.toChar() -> sc++
+//                        0.toChar() -> sc++
+//                    }
+                }
+//                n.forEach {if (it in ans) {sc++}}
+//                println(sc)
+                return (sc==ans.lastIndex)
+            }
             Question.SERIAL -> {}
 //            IDLE -> {}
         }
