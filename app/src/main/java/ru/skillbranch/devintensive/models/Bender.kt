@@ -20,14 +20,16 @@ class Bender (var status: Status = Status.NORMAL, var question : Question = Ques
                 otvet = "Это неправильный ответ. Давай все по новой\n${question.question}" to status.color
                 ercnt = 0
             } else {
-                if (question.answers.contains(answer)) {
-                    question = question.nextQuestion()
-                    otvet = "Отлично - ты справился\n${question.question}" to status.color
-                } else {
-                    status = status.nextStatus()
-                    otvet = "Это неправильный ответ\n${question.question}" to status.color
-                    ercnt++
-                }
+                if (question.question !== Question.IDLE.question) {
+                    if (question.answers.contains(answer)) {
+                        question = question.nextQuestion()
+                        otvet = "Отлично - ты справился\n${question.question}" to status.color
+                    } else {
+                        status = status.nextStatus()
+                        otvet = "Это неправильный ответ\n${question.question}" to status.color
+                        ercnt++
+                    }
+                } else {otvet = "Отлично - ты справился\n${question.question}" to status.color}
             }
         } else {
             when (question){
@@ -36,7 +38,6 @@ class Bender (var status: Status = Status.NORMAL, var question : Question = Ques
                 Question.MATERIAL -> otvet = "Материал не должен содержать цифр\n${question.question}" to status.color
                 Question.BDAY -> otvet = "Год моего рождения должен содержать только цифры\n${question.question}" to status.color
                 Question.SERIAL -> otvet = "Серийный номер содержит только цифры, и их 7\n${question.question}" to status.color
-//                    idle
             }
 
         }
@@ -58,16 +59,6 @@ class Bender (var status: Status = Status.NORMAL, var question : Question = Ques
                 values()[0]
             }
         }
-
-//        enum class Question(val question: String, val answers: List<String>) {
-//            NAME("Как меня зовут?", listOf("бендер", "bender")),
-//            PROFESSION("Назови мою профессию?", listOf("сгибальщик", "bender")),
-//            MATERIAL("Из чего я сделан?", listOf("металл", "дерево", "metal", "iron", "wood")),
-//            BDAY("Когда меня создали?", listOf("2993")),
-//            SERIAL("Мой серийный номер?", listOf("2716057")),
-//            IDLE("На этом все, вопросов больше нет", listOf())
-//        }
-
     }
 
 
@@ -108,60 +99,27 @@ class Bender (var status: Status = Status.NORMAL, var question : Question = Ques
                 n.forEach {if (it in ans) {return false}}
             }
             Question.BDAY -> {
-                val n = "1234567890"
                 var sc = -1
                 for (i in 0..ans.lastIndex){
                     for (r in 0..9)
                          if (r.toString() in ans[i].toString()) {sc++}
-//                    when (ans[i]){
-//                        1.toChar() -> sc++
-//                        2.toChar() -> sc++
-//                        3.toChar() -> sc++
-//                        4.toChar() -> sc++
-//                        5.toChar() -> sc++
-//                        6.toChar() -> sc++
-//                        7.toChar() -> sc++
-//                        8.toChar() -> sc++
-//                        9.toChar() -> sc++
-//                        0.toChar() -> sc++
-//                    }
                 }
-//                n.forEach {if (it in ans) {sc++}}
-//                println(sc)
                 return (sc==ans.lastIndex)
             }
-            Question.SERIAL -> {}
+            Question.SERIAL -> {
+                var sc = -1
+                if (ans.length == 7) {
+                    for (i in 0..ans.lastIndex) {
+                        for (r in 0..9)
+                            if (r.toString() in ans[i].toString()) {
+                                sc++
+                            }
+                    }
+                    return (sc == ans.lastIndex)
+                } else return false
+            }
 //            IDLE -> {}
         }
-//       val a = ans.toCharArray().get(0)
-//        return a.isUpperCase()
         return true
     }
-
-
-
-    //Валидация
-    enum class Valid (val question: String) {
-        NAME       ("Имя должно начинаться с заглавной буквы" ),
-        PROFESSION ("Профессия должна начинаться со строчной буквы"),
-        MATERIAL   ("Материал не должен содержать цифр"),
-        BDAY       ("Год моего рождения должен содержать только цифры"),
-        SERIAL     ("Серийный номер содержит только цифры, и их 7")
-////      IDLE (//игнорировать валидацию)
-    }
-
-
 }
-
-
-//    Question.NAME -> "Имя должно начинаться с заглавной буквы"
-//
-//    Question.PROFESSION -> "Профессия должна начинаться со строчной буквы"
-//
-//    Question.MATERIAL -> "Материал не должен содержать цифр"
-//
-//    Question.BDAY -> "Год моего рождения должен содержать только цифры"
-//
-//    Question.SERIAL -> "Серийный номер содержит только цифры, и их 7"
-//
-//    Question.IDLE -> //игнорировать валидацию
