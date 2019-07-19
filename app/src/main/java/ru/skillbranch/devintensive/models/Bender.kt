@@ -13,6 +13,7 @@ class Bender (var status: Status = Status.NORMAL, var question : Question = Ques
     var ercnt = 1
     fun listenAnswer(answer: String): Pair<String, Triple<Int, Int, Int>> {
         lateinit var otvet : Pair<String, Triple<Int, Int, Int>>
+        if (answer=="") {return "Это неправильный ответ\n${question.question}" to status.color}
         if (validation(answer, question)) {
             if (ercnt > 3) {
                 status = Status.NORMAL
@@ -29,7 +30,7 @@ class Bender (var status: Status = Status.NORMAL, var question : Question = Ques
                         otvet = "Это неправильный ответ\n${question.question}" to status.color
                         ercnt++
                     }
-                } else {otvet = "Отлично - ты справился\n${question.question}" to status.color}
+                } else {otvet = question.question to status.color}
             }
         } else {
             when (question){
@@ -95,7 +96,7 @@ class Bender (var status: Status = Status.NORMAL, var question : Question = Ques
             Question.PROFESSION -> {val a = ans.toCharArray().get(0); return a.isLowerCase()}
 //            Question.MATERIAL -> {val a = ans.toCharArray().forEach { it.toInt() }}
             Question.MATERIAL -> {
-                val n = "123456780"
+                val n = "1234567890"
                 n.forEach {if (it in ans) {return false}}
             }
             Question.BDAY -> {
