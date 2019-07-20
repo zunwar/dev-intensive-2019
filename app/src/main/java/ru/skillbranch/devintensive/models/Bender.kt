@@ -69,10 +69,7 @@ class Bender (var status: Status = Status.NORMAL, var question : Question = Ques
 
     enum class Question(val question: String, val answers: List<String>) {
         NAME("Как меня зовут?", listOf("Бендер", "Bender")) {
-            override fun nextQuestion(): Question {
-
-                return PROFESSION
-            }
+            override fun nextQuestion(): Question = PROFESSION
         },
         PROFESSION("Назови мою профессию?", listOf("сгибальщик", "bender")) {
             override fun nextQuestion(): Question = MATERIAL
@@ -98,8 +95,11 @@ class Bender (var status: Status = Status.NORMAL, var question : Question = Ques
         when (question) {
             Question.NAME -> {
                 val a = ans.toCharArray().get(0)
-                if (a.isDigit()) {return true}
-                return a.isUpperCase()
+//                if (a.isDigit()) {return true}
+                if (a.isLetter()) {
+                    return a.isUpperCase()
+                } else {return true}
+
             }
             Question.PROFESSION -> {val a = ans.toCharArray().get(0); return a.isLowerCase()}
 //            Question.MATERIAL -> {val a = ans.toCharArray().forEach { it.toInt() }}
