@@ -13,8 +13,11 @@ class Bender (var status: Status = Status.NORMAL, var question : Question = Ques
     var ercnt = 1
     fun listenAnswer(answer: String): Pair<String, Triple<Int, Int, Int>> {
         lateinit var otvet : Pair<String, Triple<Int, Int, Int>>
-        if (answer=="") {return "Это неправильный ответ\n${question.question}" to status.color}
-        if (validation(answer, question)) {
+//        if (answer=="") {
+//            ercnt++
+//            return "Это неправильный ответ\n${question.question}" to status.color
+//        }
+        if ( (answer=="") || (validation(answer, question)) ) {
             if (ercnt > 3) {
                 status = Status.NORMAL
                 question = Question.NAME
