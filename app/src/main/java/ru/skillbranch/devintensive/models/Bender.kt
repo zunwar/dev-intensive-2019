@@ -19,7 +19,7 @@ class Bender (var status: Status = Status.NORMAL, var question : Question = Ques
                 status = Status.NORMAL
                 question = Question.NAME
                 otvet = "Это неправильный ответ. Давай все по новой\n${question.question}" to status.color
-                ercnt = 0
+                ercnt = 1
             } else {
                 if (question.question !== Question.IDLE.question) {
                     if (question.answers.contains(answer)) {
@@ -52,7 +52,7 @@ class Bender (var status: Status = Status.NORMAL, var question : Question = Ques
         WARNING(Triple(255, 120, 0)),
         DANGER(Triple(255, 60, 60)),
         CRITICAL(Triple(255, 0, 0));
-        
+
         fun nextStatus(): Status {
             return if (this.ordinal < values().lastIndex) {
                 values()[this.ordinal + 1]

@@ -38,7 +38,7 @@ fun Activity.hideKeyboard() {
 
     fun Activity.isKeyboardOpen(): Boolean {
         val visibleBounds = Rect()
-        this.getRootView().getWindowVisibleDisplayFrame(Rect())
+        this.getRootView().getWindowVisibleDisplayFrame(visibleBounds)
         val heightDiff = getRootView().height - visibleBounds.height()
         val marginOfError = Math.round(this.convertDpToPx(50F))
         return heightDiff > marginOfError
@@ -49,6 +49,8 @@ fun Activity.hideKeyboard() {
     }
 
 
+//rootView.getWindowVisibleDisplayFrame(Rect())
+//**Activity.isKeyboardOpen Activity.isKeyboardClosed
 
 
 
