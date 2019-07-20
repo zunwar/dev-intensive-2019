@@ -17,7 +17,7 @@ class Bender (var status: Status = Status.NORMAL, var question : Question = Ques
 //            ercnt++
 //            return "Это неправильный ответ\n${question.question}" to status.color
 //        }
-        if ( (answer=="") || (validation(answer, question)) ) {
+        if ( (answer=="") || (validation(answer, question)) || (answer.get(0).toString().toInt() >= 0) ) {
             if (ercnt > 3) {
                 status = Status.NORMAL
                 question = Question.NAME
