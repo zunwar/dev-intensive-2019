@@ -17,7 +17,8 @@ class Bender (var status: Status = Status.NORMAL, var question : Question = Ques
 //            ercnt++
 //            return "Это неправильный ответ\n${question.question}" to status.color
 //        }
-        if ( (answer=="") || (validation(answer, question)) || (answer.get(0).toString().toInt() >= 0) ) {
+        if ( (answer=="") || (validation(answer, question))  ) {
+//            || (answer.get(0).toString().toInt() >= 0) // если вставить в условие if  то рушится проверка валидации
             if (ercnt > 3) {
                 status = Status.NORMAL
                 question = Question.NAME
@@ -95,7 +96,11 @@ class Bender (var status: Status = Status.NORMAL, var question : Question = Ques
 
     fun validation(ans:String , question: Question) : Boolean {
         when (question) {
-            Question.NAME -> {val a = ans.toCharArray().get(0); return a.isUpperCase()}
+            Question.NAME -> {
+                val a = ans.toCharArray().get(0)
+                if (a.isDigit()) {return true}
+                return a.isUpperCase()
+            }
             Question.PROFESSION -> {val a = ans.toCharArray().get(0); return a.isLowerCase()}
 //            Question.MATERIAL -> {val a = ans.toCharArray().forEach { it.toInt() }}
             Question.MATERIAL -> {
