@@ -47,7 +47,9 @@ class MainActivity : AppCompatActivity() , View.OnClickListener, OnEditorActionL
         val question = savedInstanceState?.getString("QUESTION") ?: Bender.Question.NAME.name
 //        val prevtext = savedInstanceState?.getString("text") ?: messageEt.toString()
 //        val prevtext = savedInstanceState?.getString("text") ?: et.text.toString()
+        val ercnt = savedInstanceState?.getInt("ercnt") ?: 1
         benderObj = Bender(Bender.Status.valueOf(status), Bender.Question.valueOf(question))
+        benderObj.ercnt=ercnt
 
         Log.d("M_MainActivity", "OnCreate $status $question")
 
@@ -95,6 +97,7 @@ class MainActivity : AppCompatActivity() , View.OnClickListener, OnEditorActionL
         outState?.putString("QUESTION" , benderObj.question.name)
 //        outState?.putString("text" , et.text.toString())
         Log.d("M_MainActivity" , "onSaveInstanceState ${benderObj.status.name} ${benderObj.question.name}")
+        outState?.putInt("ercnt", benderObj.ercnt)
 
     }
 }
