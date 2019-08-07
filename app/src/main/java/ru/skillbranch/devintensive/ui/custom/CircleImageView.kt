@@ -9,21 +9,10 @@ import androidx.annotation.Dimension
 import ru.skillbranch.devintensive.R
 import android.graphics.*
 import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.ShapeDrawable
-import android.graphics.drawable.shapes.OvalShape
-import android.graphics.drawable.shapes.RectShape
 import android.util.DisplayMetrics
-import android.util.Log
-import android.util.TypedValue
 import androidx.annotation.ColorRes
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.core.graphics.drawable.toBitmap
-import androidx.core.graphics.toColor
-import androidx.core.widget.ImageViewCompat
-import kotlinx.android.synthetic.main.activity_profile.view.*
-import kotlin.math.round
-import kotlin.math.roundToInt
 
 
 class CircleImageView  @JvmOverloads constructor  (

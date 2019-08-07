@@ -35,8 +35,8 @@ object PreferencesRepository {
         prefs.getString(LAST_NAME, "")!!,
         prefs.getString(ABOUT, "")!!,
         prefs.getString(REPOSITORY, "")!!,
-        prefs.getInt(RATING, 0)!!,
-        prefs.getInt(RESPECT, 0)!!
+        prefs.getInt(RATING, 0),
+        prefs.getInt(RESPECT, 0)
     )
 
     fun saveProfile(profile: Profile) {
