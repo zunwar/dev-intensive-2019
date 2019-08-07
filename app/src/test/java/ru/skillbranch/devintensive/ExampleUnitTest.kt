@@ -11,14 +11,17 @@ import ru.skillbranch.devintensive.utils.Utils
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
-import android.support.test.espresso.Espresso
-import android.support.test.espresso.action.ViewActions
-import android.support.test.espresso.matcher.ViewMatchers
-import android.support.test.rule.ActivityTestRule
-import android.support.test.runner.AndroidJUnit4
+import androidx.core.graphics.toColorInt
+//import android.support.test.espresso.Espresso
+//import android.support.test.espresso.action.ViewActions
+//import android.support.test.espresso.matcher.ViewMatchers
+//import android.support.test.rule.ActivityTestRule
+//import android.support.test.runner.AndroidJUnit4
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.runner.RunWith
+import ru.skillbranch.devintensive.ui.custom.CircleImageView
+
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -373,13 +376,34 @@ class ExampleUnitTest {
 //
 //        }
 
-        val a = "0sdfkd"
-        val b = a.toCharArray().get(0)
-        if (b.isDigit()){
-            println("+")
-        } else println("-")
+//        val a = "0sdfkd"
+//        val b = a.toCharArray().get(0)
+//        if (b.isDigit()){
+//            println("+")
+//        } else println("-")
+
+
+//        val a = 5
+//        val b = 9
+//        if (a == 7) println("sdf")
+//        else println("ne vishlo")
+
+//         val DEFAULT_BORDER_COLOR : Triple <Int, Int, Int> = Triple(255,255,255)
+//         val abs: String = "#675F7F"
+//
+//
+//
+//         val borcolor = Color.parseColor(abs)
+//         println(borcolor)
+
+//        println("#000000".toColorInt())
+
+    val a = "325"
+        val b = a.toInt()
+        println(b)
 
     }
+
 
 
 
