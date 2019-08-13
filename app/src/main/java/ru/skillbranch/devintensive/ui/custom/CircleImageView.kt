@@ -39,7 +39,7 @@ class CircleImageView  @JvmOverloads constructor  (
         if (attrs != null ) {
            val  a = context.obtainStyledAttributes(attrs, R.styleable.CircleImageView)
             border_color  = a.getColor(R.styleable.CircleImageView_cv_borderColor, DEFAULT_BORDER_COLOR)
-            border_width = a.getDimensionPixelSize(R.styleable.CircleImageView_cv_borderWidth, DEFAULT_BORDER_WIDTH)
+            border_width = a.getDimensionPixelSize(R.styleable.CircleImageView_cv_borderWidth, DEFAULT_BORDER_WIDTH*context.resources.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT)
 //            border_color = a.getResourceId(R.styleable.CircleImageView_cv_borderColor, DEFAULT_BORDER_COLOR)
             val bit: Bitmap = drawable.toBitmap()
 ////************************************************************************************************************************************************
@@ -316,7 +316,7 @@ class CircleImageView  @JvmOverloads constructor  (
     }
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        if (tt==1){
+        if (tt==5){
             risovanie()
             tt++
         }
