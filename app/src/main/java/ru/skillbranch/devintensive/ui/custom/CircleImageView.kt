@@ -10,6 +10,7 @@ import ru.skillbranch.devintensive.R
 import android.graphics.*
 import android.graphics.Bitmap
 import android.util.DisplayMetrics
+import android.util.Log
 import androidx.annotation.ColorRes
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.core.graphics.drawable.toBitmap
@@ -39,7 +40,10 @@ class CircleImageView  @JvmOverloads constructor  (
         if (attrs != null ) {
            val  a = context.obtainStyledAttributes(attrs, R.styleable.CircleImageView)
             border_color  = a.getColor(R.styleable.CircleImageView_cv_borderColor, DEFAULT_BORDER_COLOR)
-            border_width = a.getDimensionPixelSize(R.styleable.CircleImageView_cv_borderWidth, DEFAULT_BORDER_WIDTH*context.resources.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT)
+//            DEFAULT_BORDER_WIDTH*context.resources.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT
+            val bb = 10*context.resources.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT
+            border_width = a.getDimensionPixelSize(R.styleable.CircleImageView_cv_borderWidth, DEFAULT_BORDER_WIDTH*context.resources.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT )
+            Log.d("M_CircleImageView", border_width.toString())
 //            border_color = a.getResourceId(R.styleable.CircleImageView_cv_borderColor, DEFAULT_BORDER_COLOR)
             val bit: Bitmap = drawable.toBitmap()
 ////************************************************************************************************************************************************
@@ -316,10 +320,11 @@ class CircleImageView  @JvmOverloads constructor  (
     }
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        if (tt==5){
+        if (tt==1){
             risovanie()
             tt++
         }
+
 
 
     }
@@ -383,15 +388,15 @@ class CircleImageView  @JvmOverloads constructor  (
 //        strokePaint.strokeWidth = border_width
         val mm = strokePaint.strokeWidth/2
 //
-//        Log.d("M_CircleImageView","uco")
-//        Log.d("M_CircleImageView", strokePaint.strokeWidth.toString())
+        Log.d("M_CircleImageView","uco")
+        Log.d("M_CircleImageView", strokePaint.strokeWidth.toString())
 
 
 
 //        cvs1.drawCircle(te.exactCenterX() , te.exactCenterY() , 150f, fillPaint)
 
 //        if (pp > 0 ) {
-            cvs2.drawCircle(te.exactCenterX() , te.exactCenterY() , h/2.toFloat()-mm, strokePaint)
+            cvs2.drawCircle(te.exactCenterX() , te.exactCenterY() , Rad-mm, strokePaint)
 //        }
 //        else {
 //            fillPaint.color = Color.GREEN
