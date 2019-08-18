@@ -46,6 +46,7 @@ class CircleImageView  @JvmOverloads constructor  (
             Log.d("M_CircleImageView", border_width.toString())
 //            border_color = a.getResourceId(R.styleable.CircleImageView_cv_borderColor, DEFAULT_BORDER_COLOR)
             val bit: Bitmap = drawable.toBitmap()
+
 ////************************************************************************************************************************************************
 //
 ////            val sz = width
@@ -290,6 +291,7 @@ class CircleImageView  @JvmOverloads constructor  (
     }
 
     fun getBorderWidth():Int {
+        border_width = border_width*DisplayMetrics.DENSITY_DEFAULT/context.resources.displayMetrics.densityDpi
     return border_width
     }
 
