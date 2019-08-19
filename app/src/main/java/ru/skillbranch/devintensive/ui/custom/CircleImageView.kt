@@ -12,6 +12,7 @@ import android.graphics.Bitmap
 import android.util.DisplayMetrics
 import android.util.Log
 import androidx.annotation.ColorRes
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.core.graphics.drawable.toBitmap
 
@@ -304,22 +305,26 @@ class CircleImageView  @JvmOverloads constructor  (
         strokePaint.strokeWidth = border_width.toFloat()
 
     }
+    fun setBorderColor(hex:String) {
+        border_color = Color.parseColor(hex)
+    }
+
+    fun setBorderColor(@ColorRes colorId: Int) {
+//        border_color=colorId
+       val  f = ContextCompat.getColor(context, colorId)
+        border_color=f
+    }
+
     fun getBorderColor():Int {
         return border_color
     }
-    fun setBorderColor(hex:String) {
 
-        border_color = Color.parseColor(hex)
-    }
-    fun setBorderColor(@ColorRes colorId: Int) {
-        border_color=colorId
-    }
 
- var tt =1
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
     }
+    var tt =1
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         if (tt==1){
