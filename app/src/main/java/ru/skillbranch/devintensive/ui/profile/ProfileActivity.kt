@@ -22,6 +22,7 @@ import ru.skillbranch.devintensive.models.Bender
 import ru.skillbranch.devintensive.extensions.*
 import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.models.Profile
+import ru.skillbranch.devintensive.utils.Utils
 import ru.skillbranch.devintensive.viewmodels.ProfileViewModel
 
 
@@ -130,7 +131,8 @@ class ProfileActivity : AppCompatActivity() {
             firstName = et_first_name.text.toString(),
             lastName = et_last_name.text.toString(),
             about = et_about.text.toString(),
-            repository = et_repository.text.toString()
+            repository = et_repository.text.toString(),
+            nickName = Utils.transliteration(et_first_name.text.toString()+" "+et_last_name.text.toString(), "_")
         ).apply {
             viewModel.saveProfileData(this)
         }

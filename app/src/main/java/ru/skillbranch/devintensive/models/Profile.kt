@@ -5,10 +5,11 @@ data class Profile(
     val lastName : String ,
     val about : String ,
     val repository : String ,
+    val nickName : String,
     val rating : Int = 0 ,
     val respect : Int = 0
 ) {
-    val nickName : String = "John Doe"
+//    val nickName : String = "John Doe"
     val rank : String  = "Junior Android Developer"
     fun toMap () : Map<String, Any> = mapOf (
         "nickName" to nickName,
