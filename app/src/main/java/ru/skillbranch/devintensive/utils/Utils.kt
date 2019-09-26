@@ -6,7 +6,8 @@ object Utils {
 
         if ( fullName != null && fullName.isNotBlank() ) {
             val parts: List<String>? = fullName.split(" ")
-            val firstName = parts?.getOrNull(0)
+            val firstName = parts?.get(0)
+//            val firstName = parts?.getOrNull(0)
             val lastName = parts?.getOrNull(1)
             val  name = firstName to lastName
 

@@ -1,6 +1,5 @@
 package ru.skillbranch.devintensive
 
-import org.hamcrest.core.StringContains
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -8,19 +7,12 @@ import java.util.*
 import ru.skillbranch.devintensive.extensions.*
 import ru.skillbranch.devintensive.models.*
 import ru.skillbranch.devintensive.utils.Utils
-import android.graphics.Color
-import android.graphics.PorterDuff
-import android.graphics.PorterDuffColorFilter
-import androidx.core.graphics.toColorInt
 //import android.support.test.espresso.Espresso
 //import android.support.test.espresso.action.ViewActions
 //import android.support.test.espresso.matcher.ViewMatchers
 //import android.support.test.rule.ActivityTestRule
 //import android.support.test.runner.AndroidJUnit4
-import org.junit.Assert.*
-import org.junit.Rule
-import org.junit.runner.RunWith
-import ru.skillbranch.devintensive.ui.custom.CircleImageView
+import java.io.File
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -398,9 +390,9 @@ class ExampleUnitTest {
 
 //        println("#000000".toColorInt())
 
-    val a = "325"
-        val b = a.toInt()
-        println(b)
+//    val a = "325"
+//        val b = a.toInt()
+//        println(b)
 
     }
 
@@ -691,6 +683,477 @@ class ExampleUnitTest {
 //            assertEquals(normalColorFilter, rule.activity.benderImage.colorFilter)
 //        }
 //    }
+
+
+
+
+//
+//    @Test
+//    fun schet (str:String): Int {
+//        val parts:List<String> = str.split(" ")
+//        val fn = parts.get(0)
+//        val sn = parts.get(1)
+//        val ifn = fn.toInt()
+//        val isn = sn.toInt()
+//        val sum = ifn + isn
+//        println(sum)
+//        return sum
+//    }
+@Test
+ fun testschet() {
+    var c = 0
+        val a = 2
+        val b = 4
+    for (n in 1..2){
+        c = c+b
+        c+=b
+    }
+
+    }
+
+    @Test
+    fun ert() {
+        val buf = File("input.txt")
+var avc = 0
+        val inputString = buf.readLines()
+        if (inputString != null) {
+
+            for( line in buf.readLines()){
+
+                for ( word in line.split(" ")){
+                var av: Int
+                av = 0
+                av = word.toInt()
+                var avc = +av
+                }
+
+
+        }
+
+
+
+            val outwriter = File("output.txt").bufferedWriter()
+            outwriter.write(avc)
+            outwriter.close()
+        }
+        else {println("error")}
+
+
+    }
+
+
+
+@Test
+fun erty() {
+    val buf = File("input.txt")
+    var avc = 0
+    val inputString = buf.readLines()
+
+
+    for( line in buf.readLines()){
+
+        for ( word in line.split(" ")){
+            val av: Int = word.toInt()
+            avc += av
+        }
+
+
+
+        val outwriter = File("output.txt").bufferedWriter()
+        outwriter.write(avc)
+        outwriter.close()
+    }
+}
+
+    private fun schet0() {
+        val buf = File("""C:\\Users\\admin\\AndroidStudioProjects\\dev-intensive-2019\\app\\input.txt""")
+        var avc = 0
+        val outwriter = File("output.txt").bufferedWriter()
+
+        for( line in buf.readLines()){
+            for ( word in line.split(" ")){
+                val av: Int = word.toInt()
+                println(av)
+                avc += av
+                println(avc)
+            }
+            outwriter.write(avc.toString())
+        }
+        outwriter.close()
+    }
+
+
+    @Test
+    fun schet(){
+        schet0()
+    }
+
+@Test
+fun reshaem(){
+    val a = arrayOf("1", "2", "2", "3", "3")
+    val b = a.distinct() // ["a", "b", "c"]
+    println(b)
+
+}
+
+
+    private fun schet1() {
+        val buf = File("input.txt")
+        val outwriter = File("output.txt").bufferedWriter()
+        val skolko: String
+        val mlist: MutableList<Int> = mutableListOf()
+
+
+        skolko = buf.bufferedReader().readLines().first()
+        val skl = skolko
+        for( line in buf.readLines()){
+            for ( word in line.split(" ")){
+                val av: Int = word.toInt()
+                    mlist.add(av)
+            }
+        }
+        mlist.removeAt(0)
+        var ber = 0
+        for (i in mlist.distinct()) {
+            ber += i
+        }
+        outwriter.write(ber.toString())
+        outwriter.close()
+    }
+
+
+    @Test
+    fun schet2(){
+        schet1()
+    }
+
+
+
+    @Test
+    fun RLE () {
+//        val str=readLine()
+        val rlst = "156BA236ABCF54"
+        val str = rlst+"S"
+        val ch = str!!.toCharArray()
+        val mlist2 : MutableList<Int> = mutableListOf()
+        val mlist3 : MutableList<Int> = mutableListOf()
+        var pchislo : Int
+        for (i in ch.indices) {
+            if (i+1<=ch.lastIndex) {
+                if (ch[i].isLetter() && ch[i +1].isDigit()){
+                    val cifra = ch[i +1].toString().toInt()
+//                    println(cifra)
+                    mlist2.add(cifra)
+                }
+                if (ch[i].isDigit() && ch[i+1].isDigit()){
+                    val cifra = ch[i +1].toString().toInt()
+//                    println(cifra)
+                    mlist2.add(cifra)
+                }
+                if (ch[i].isLetter() && ch[i+1].isLetter()){
+                    mlist2.add(1)
+                    pchislo = mlist2.toString().replace("[", "").
+                        replace(",", "").replace("]", "").
+                        replace(" ", "").toInt()
+//                println(mlist2)
+                    mlist2.clear()
+                    mlist3.add(pchislo)
+                }
+                if (ch[i].isDigit() && ch[i+1].isLetter()){
+                    pchislo = mlist2.toString().replace("[", "").
+                        replace(",", "").replace("]", "").
+                        replace(" ", "").toInt()
+//                println(mlist2)
+                    mlist2.clear()
+                    mlist3.add(pchislo)
+                }
+
+            }
+
+
+        }
+        println (mlist3.sum())
+//        var avc : Int = 0
+//        for (i in mlist3) {
+//            avc+=i
+//            println(avc)
+//        }
+//
+//
+//
+//
+//            while (i2.isDigit()) {
+//                mlist2.add(i.toInt())
+//                bg = mlist2.toString().replace("[", "").replace(",", "")
+//            .replace("]", "").replace(" ", "")
+//                i2++
+//            }
+//
+//
+//
+//
+//
+//        str.forEach { if (it.isDigit()) mlist.add(it.toString())
+//        else mlist.add(" ")}
+//        println(mlist)
+//
+//        val c = mlist.toString().replace("[", "").replace(",", "")
+//            .replace("]", "").replace(" ", "")
+//        println(c)
+//
+//        val cc = c.trim()
+//        println(cc)
+//        val ccc = cc.split(" ")
+//        println(ccc)
+//        println(c.split( " "))
+//        var fva : Int = 0
+////        for ( word in c.split(" ")) {
+////            val av: Int = word.toInt()
+////            fva += av
+//////            println(fva)
+////        }
+//
+////        for (i in mlist)
+//
+//
+//        for ( i in ch){
+//            val s = i.toString()
+//
+//
+//
+//
+//        when (s) {
+//                    "A"  ->  mlist.add(" ")
+//                    "B"  ->  mlist.add(" ")
+//                    "C"  ->  mlist.add(" ")
+//                    "D"  ->  mlist.add(" ")
+//                    "E"  ->  mlist.add(" ")
+//                    "F"  ->  mlist.add(" ")
+//                    "G"  ->  mlist.add(" ")
+//                    "H"  ->  mlist.add(" ")
+//                    "I"  ->  mlist.add(" ")
+//                    "J"  ->  mlist.add(" ")
+//                    "K"  ->  mlist.add(" ")
+//                    "L"  ->  mlist.add(" ")
+//                    "M"  ->  mlist.add(" ")
+//                    "N"  ->  mlist.add(" ")
+//                    "O"  ->  mlist.add(" ")
+//                    "P"  ->  mlist.add(" ")
+//                    "Q"  ->  mlist.add(" ")
+//                    "R"  ->  mlist.add(" ")
+//                    "S"  ->  mlist.add(" ")
+//                    "T"  ->  mlist.add(" ")
+//                    "U"  ->  mlist.add(" ")
+//                    "V"  ->  mlist.add(" ")
+//                    "W"  ->  mlist.add(" ")
+//                    "X"  ->  mlist.add(" ")
+//                    "Y"  ->  mlist.add(" ")
+//                    "Z"  ->  mlist.add(" ")
+//                        "2" -> mlist.add("2")
+//                        "3" -> mlist.add("3")
+//                        "4" -> mlist.add("4")
+//                        "5" -> mlist.add("5")
+//                        "6" -> mlist.add("6")
+//                        "7" -> mlist.add("7")
+//                        "8" -> mlist.add("8")
+//                        "9" -> mlist.add("9")
+//               }
+//
+//        }
+//
+//
+//        val bs : Int
+
+    }
+
+
+    @Test
+    fun sdfsdfs() {
+        val a = "12aa34"
+        val b = a.toCharArray()
+        for (i in b) {
+            var i2 = i
+            while (i2.isDigit()) {
+                println("i2")
+                println(i2)
+                println("i2")
+                i2++
+            }
+        }
+    }
+    @Test
+    fun sdfsdfs2() {
+//        val a = File("input.txt")
+        val a = readLine()
+
+
+
+    }
+
+
+
+
+
+    @Test
+    fun rabochii_v_itoge() {
+        val buf = File("input.txt")
+        val outwriter = File("output.txt").bufferedWriter()
+        val mlist: MutableList<Int> = mutableListOf()
+
+        for( line in buf.readLines()){
+            for ( word in line.split(" ")){
+                val av: Int = word.toInt()
+                mlist.add(av)
+            }
+        }
+        mlist.removeAt(0)
+        var ber = 0L
+        for (i in mlist.distinct()) {
+            ber += i
+        }
+        outwriter.write(ber.toString())
+        outwriter.close()
+
+    }
+
+
+    @Test
+    fun parity() {
+
+        val a = "1 0 0 0 1 1 0 1 1 0"    //11
+//        val a = "1 0 0 0 0 1 0 1 1 0 0"    //11
+//        val a = "1 0 1 0 1 0 0 1 1 0"   //22
+//        val a =   "3 2 2 2 3 3 2 3 3 2"
+//        val a =   "3 2 3 2 3 2 2 3 3 2"
+
+//        val b = a.sortedBy {  }
+
+        var CntSwaps  = 0
+        val badind = mutableListOf<Int>()
+        fun MutableList<Int>.sortbyparity() : MutableList<Int> {
+//            var swap = true
+//            while(swap){
+//                swap = false
+//                for(i in 0 until this.indices.last){
+
+var vip = true
+//            for (y in 0..0){
+            while (vip) {
+            var find1 = true
+            var find2 = true
+            var find3 = true
+
+
+                    for (i in this.indices) {
+                        if (badind.count() == 2) {
+//                            println("i tut toje bivau")
+//                            println(badind[0])
+//                            println(badind[1])
+
+                            CntSwaps++
+                            val temp = this [ badind[0]]
+                            this[badind[0]] = this[badind[1]]
+                            this[badind[1]] = temp
+                            badind.clear()
+                            break
+                        }
+                        else {
+                            if (this[i] % 2 == 1 && this[i + 1] % 2 == 0) {
+
+//                                println("oba norm")
+//                                println(this[i])
+//                                println(this[i+1])
+//                                val temp = this[i]
+//                                this[i] = this[i+1]
+//                                this[i + 1] = temp
+//                                swap = true
+                            }
+                            if  ((this[i] % 2 == 0 && this[i + 1] % 2 == 1)&& (find3) && (i % 2 == 1 && (i+1) % 2 == 0)){
+
+
+                            }
+                            else {
+
+                                if ((this[i] % 2 == 0 && this[i + 1] % 2 == 0) && (find1) && ((i+1) % 2 == 0)) {
+                                    //мб тут надо сделать так чтобы запоминался именно четный индекс\
+//                                    println("oba chetnie")
+//                                    println(this[i])
+//                                    println(this[i+1])
+                                    find1 = false
+                                    badind.add(i + 1)
+                                }
+
+                                if ((this[i] % 2 == 1 && this[i + 1] % 2 == 1)&& (find2) && ((i+1) % 2 == 1)) {
+//                                    println("oba NEchetnie")
+//                                    println(i)
+//                                    println(i+1)
+                                    find2 = false
+                                    badind.add(i + 1)
+                                }
+                                if  ((this[i] % 2 == 0 && this[i + 1] % 2 == 1)&& (find3) && (i % 2 == 0 && (i+1) % 2 == 1)){
+//                                    println("yo")
+                                    find3 = false
+//                                    badind.add(i)
+                                    badind.add(i + 1)
+                                } else {vip=false}
+                            }
+                        }
+                    }
+            }
+//            }
+            return this
+        }
+
+
+        val inputwriter = File("input.txt")
+        val outwriter = File("output.txt").bufferedWriter()
+        val inpt: MutableList<Int> = mutableListOf()
+
+        for( line in inputwriter.readLines()){
+            for ( word in line.split(" ")){
+                val av: Int = word.toInt()
+                inpt.add(av)
+            }
+        }
+        inpt.removeAt(0)
+//        print(inpt)
+
+
+//            val inputline = a
+//            val mlist = mutableListOf<Int>()
+
+//        val bb = inputline.split(" ")
+//        bb.forEach{mlist.add(it.toInt())}
+
+        inpt.sortbyparity()
+        println(CntSwaps*2)
+        inpt.forEach { print(it) }
+
+
+
+
+
+
+
+
+//        val n = 6
+//
+//        if (n and 1 === 0) {
+//            println("четное")
+//        } else {
+//            println("нечетное")
+//        }
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 
